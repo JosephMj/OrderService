@@ -28,7 +28,7 @@ internal class OrderServiceTest {
         Assert.assertEquals(23.4f, ((discountAmount3 * 100.0).roundToLong() / 100.0).toFloat())
         val discountAmount4 = price.calculateDiscount(0, 0)
         Assert.assertEquals(0f, ((discountAmount4 * 100.0).roundToLong() / 100.0).toFloat())
-     }
+    }
 
     @Test(expected = NumberFormatException::class)
     fun testFailureTotal() {

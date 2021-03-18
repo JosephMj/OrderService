@@ -1,6 +1,8 @@
-class PriceDetails {
+internal class PriceDetails {
     private val appleCost = 0.60f
     private val orangeCost = 0.65f
+    var appleStock = 20
+    var orangeStock = 15
     val deliveryTime = 20f
 
     fun calculatePrice(appleCount: Int, orangeCount: Int): Float {
