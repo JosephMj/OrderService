@@ -19,9 +19,12 @@ fun main() {
             if (oranges < 0) throw NumberFormatException("Negative number")
 
             val totalAmount = price.calculatePrice(apples, oranges)
+            val discountAmount = price.calculateDiscount(apples.toLong(), oranges.toLong())
 
             println("Order Summary\n------------------------\n------------------------\nNumber of Apples  = $apples\nNumber of Oranges = $oranges")
             println("Total Price       = " + (totalAmount * 100.0).roundToLong() / 100.0 + "$")
+            println("Discount amount   = " + ((totalAmount - discountAmount) * 100.0).roundToLong() / 100.0 + "$")
+            println("Net Amount        = " + (discountAmount * 100.0).roundToLong() / 100.0 + "$")
             println("Enter n to exit / Enter any key to continue")
             choice = myObj.nextLine()
         } catch (e: NumberFormatException) {
