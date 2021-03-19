@@ -7,6 +7,7 @@ fun main() {
     val myObj = Scanner(System.`in`) // Create a Scanner object
     val price = PriceDetails()
     val mail = MailService()
+    val topic=KafkaProducer()
     println("Items Available:\n Apples (0.6$/piece) | Stock: " + price.appleStock + "\n Oranges(0.65$/piece)| Stock: " + price.orangeStock + "\n Available Discounts-\n\tBuy one get one free on apples!!\n\t3 for the price of 2 on oranges!!\nEnter any key to continue or n to Exit")
     var choice = myObj.nextLine()
     while (!choice.equals("n", ignoreCase = true)) {
@@ -28,6 +29,10 @@ fun main() {
             price.appleStock = price.appleStock - apples
             price.orangeStock = price.orangeStock - oranges
             mail.successMessage()
+
+            val kafkaMsg = "$apples,$oranges"
+            topic.produce(kafkaMsg)
+
             println("Order Summary\n------------------------\n------------------------\nNumber of Apples  = $apples\nNumber of Oranges = $oranges")
             println("Total Price       = " + (totalAmount * 100.0).roundToLong() / 100.0 + "$")
             println("Discount amount   = " + ((totalAmount - discountAmount) * 100.0).roundToLong() / 100.0 + "$")
